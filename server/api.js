@@ -1,6 +1,7 @@
 'use strict'
 const api = require('express').Router()
 const db = require('../db/models')
+const Campus = db.Campus;
 const bluebird = require('bluebird');
 
 // If you aren't getting to this object, but rather the index.html (something with a joke) your path is wrong.
@@ -35,7 +36,7 @@ api.get('/campuses/:id', (req, res, next) => {
 })
 
 api.get('/students', (req, res, next) => {
-  db.User.findAll()
+  db.User.findAll({include:[{model: Campus}]})
   .then((students) => {
     res.status(200).json(students);
   })

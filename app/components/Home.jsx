@@ -43,22 +43,10 @@ export default class Home extends Component {
         <h1>hello world</h1>
         <div id="home-campuses">
           {campuses.map(campus => {
-            return <img key={campus.id} src={campus.image}/>}
+            return <Link to = {'/campuses/:id'}>
+              <img key={campus.id} src={campus.image}/>
+            </Link>}
            )}
-
-
-          {/* <Link to = {'/campuses/:id'}>
-            <img src={this.state.campuses.image}/>
-          </Link>
-          <Link to = {'/campuses/:id'}>
-          <img src={this.state.campuses.image}/>
-          </Link>
-          <Link to = {'/campuses/:id'}>
-          <img src={this.state.campuses.image}/>
-          </Link>
-          <Link to = {'/campuses/:id'}>
-          <img src={this.state.campuses.image}/>
-          </Link> */}
         </div>
       </div>
     )

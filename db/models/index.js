@@ -27,7 +27,7 @@ let Campus = db.define('campus', {
 	},
 	image: {
 		type: Sequelize.STRING,
-		// default_value: 'imageURL'
+		defaultValue: '/favicon.ico'
 	}
 })
 
