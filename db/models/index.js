@@ -10,7 +10,7 @@
 const db = require('../../db')
 const Sequelize = require('sequelize');
 
-var User = db.define('user', {
+let User = db.define('user', {
   name: {
     type: Sequelize.STRING,
     allowNull: false
@@ -20,19 +20,23 @@ var User = db.define('user', {
 	}
 })
 
-var Campus = db.define('campus', {
+let Campus = db.define('campus', {
 	name: {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
 	image: {
-		type: Sequelize.STRING
+		type: Sequelize.STRING,
+		// default_value: 'imageURL'
 	}
 })
 
 // associations:
 User.belongsTo(Campus);
 		//CampusId added to User table
+		//User.prototype.setCampus
 Campus.hasMany(User);
+	//we can set campus now with user
+	//campus.prototype.getUser() (on the lowercase instance, not the uppercase class)
 
 module.exports = {User, Campus}

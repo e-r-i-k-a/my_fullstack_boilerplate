@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar';
+import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 export default class Home extends Component {
-  constructor() {
-    super()
-    this.state = {};
-    //set state with results of axios request
+  constructor(props) {
+    super(props)
+    this.state = {
+      students: [],
+      campuses: []
+    };
+
     this.func1 = this.func1.bind(this)
     this.func2 = this.func2.bind(this)
   }
 
-  componentDidMount() {
-    this.func1()
-    //make an aync axios call to api route for all campuses
-  }
+	componentDidMount () {
+		axios.get('api/campuses')
+		.then(res => res.data)
+		.then(campuses => this.setState({campuses}))
+	}
 
   func1() {
     this.setState({
@@ -30,15 +36,29 @@ export default class Home extends Component {
   render() {
     // if (!this.state) { return null }
     // const {joke, answered} = this.state
+   const campuses=(this.state.campuses)
     return (
+
       <div>
         <h1>hello world</h1>
         <div id="home-campuses">
-          <img src="/luna.png"></img>
-          {/* //give each a name of the campus from the campus array */}
-          <img src="/mars.png"></img>
-          <img src="/terra.png"></img>
-          <img src="/titan.png"></img>
+          {campuses.map(campus => {
+            return <img key={campus.id} src={campus.image}/>}
+           )}
+
+
+          {/* <Link to = {'/campuses/:id'}>
+            <img src={this.state.campuses.image}/>
+          </Link>
+          <Link to = {'/campuses/:id'}>
+          <img src={this.state.campuses.image}/>
+          </Link>
+          <Link to = {'/campuses/:id'}>
+          <img src={this.state.campuses.image}/>
+          </Link>
+          <Link to = {'/campuses/:id'}>
+          <img src={this.state.campuses.image}/>
+          </Link> */}
         </div>
       </div>
     )

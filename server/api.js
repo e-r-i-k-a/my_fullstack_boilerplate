@@ -9,24 +9,11 @@ const bluebird = require('bluebird');
 
 // api.get('/', (req, res, next) => res.send({hello: 'world'}))
 
-var allData = {};
 
 api.get('/', (req, res, next) => {
-
-  var dbRetrieval = [
-    db.User.findAll()
-    .then((users) => {
-      allData.Users = users;
-    }),
-    db.Campus.findAll()
-    .then((campuses) => {
-      allData.Campuses = campuses;
-    })
-	]
-
-  Promise.all(dbRetrieval)
-  .then ((data) => {
-    res.status(200).json(allData);
+  db.User.findAll({include: [{all: true}]})
+  .then(allData => {
+    res.json(allData);
   })
   .catch(next)
 })
@@ -40,7 +27,7 @@ api.get('/campuses', (req, res, next) => {
 })
 
 api.get('/campuses/:id', (req, res, next) => {
-  db.Campus.findById(req.params.id)
+  db.Campus.findById(Number(req.params.id))
   .then((campus) => {
     res.status(200).json(campus);
   })
@@ -56,7 +43,7 @@ api.get('/students', (req, res, next) => {
 })
 
 api.delete('/students/:id', (req, res, next) => {
-  const id = req.params.id;
+  const id = Number(req.params.id);
   db.User.destroy({
      where: { id }
     })
@@ -70,7 +57,6 @@ api.delete('/students/:id', (req, res, next) => {
 });
 
 api.post('/students', function (req, res, next) {
-  console.log(req.body);
   db.User.create(req.body)
   .then((newUser) => {
     db.User.findAll()

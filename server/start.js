@@ -4,6 +4,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const {resolve} = require('path')
 const app = express()
+const db = require('../db')
+// const Campus = require('../db/models')
+// const Sequelize = require('sequelize')
+// const bluebird = require('bluebird')
 
 if (process.env.NODE_ENV !== 'production') {
   // Logging middleware (non-production only)
@@ -22,21 +26,10 @@ module.exports = app
 
 
 
-
-
-
-
-  // *
+// app.use(4 params)
+  // * all .next in routes will come back here
   // put error handling middleware here!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   // *
-
-
-
-
-
-
-
-
 
 
 
@@ -67,3 +60,6 @@ if (module === require.main) {
     app.listen(PORT, () => console.log(`server listening on port ${PORT}`))
   });
 }
+
+
+

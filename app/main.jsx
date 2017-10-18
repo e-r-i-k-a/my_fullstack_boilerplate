@@ -5,7 +5,6 @@ import { Provider } from 'react-redux'
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import NavBar from './components/NavBar';
 import store from './store'
-// import Root from './components/Root'
 import Home from './components/Home'
 import Students from './components/Students'
 
@@ -19,7 +18,9 @@ render (
       <Switch>
           <Route path="/home" component={Home}/>
           <Route path="/students" component={Students}/>
+          <Route path="/campus/:id" component={Home}/>
           {/* <Route path="/students" render={() => <Student users={this.state.users} />}/> */}
+            {/* //this is how you pass props down to a component */}
           {/* <Route path="/campuses" component={Campuses}/> */}
           <Redirect to="/home"/>
       </Switch>
