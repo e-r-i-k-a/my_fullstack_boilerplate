@@ -7,8 +7,9 @@ export default class Students extends Component {
 		super(props);
 		this.state = {
 			students: [],
-			campuses: []
+			// singleStudent : null
 		};
+		// this.showSingleStudent = this.showSingleStudent.bind(this)
 	}
 
 	componentDidMount () {
@@ -17,6 +18,13 @@ export default class Students extends Component {
 		.then(students => this.setState({students}))
 	}
 
+	// showSingleStudent(id){
+	// 	axios.get(`students\${id}`)
+	// 	.then(student => {
+	// 		this.setState({singleStudent: student})
+	// 	})
+	// }
+
 	render () {
 
 		const users = this.state.students;
@@ -24,6 +32,7 @@ export default class Students extends Component {
 		return (
 			<div id="Students">
 				<h1>Hello from 'Students'</h1>
+				{/* {this.singleStudent ? <Student student={this.singleStudent} : */}
 				<table className = 'student-table'>
 					<thead>
 						<tr>
@@ -36,6 +45,7 @@ export default class Students extends Component {
 						{
 							users.map(student => (
 								<tr key = {student.id}>
+									{/* <td onClick={() => this.showSingleStudent(student.id)}>{student.id}</td> */}
 									<td>{student.id}</td>
 									<td>{student.name}</td>
 									<td>{student.campusId}</td>

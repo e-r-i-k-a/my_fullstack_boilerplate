@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import store from './store'
 import Home from './components/Home'
 import Students from './components/Students'
+import Campus from './components/Campus'
 
 render (
   <Provider store={store}>
@@ -18,7 +19,7 @@ render (
       <Switch>
           <Route path="/home" component={Home}/>
           <Route path="/students" component={Students}/>
-          <Route path="/campus/:id" component={Home}/>
+          <Route path="/campus/:id" component={Campus}/>
           {/* <Route path="/students" render={() => <Student users={this.state.users} />}/> */}
             {/* //this is how you pass props down to a component */}
           {/* <Route path="/campuses" component={Campuses}/> */}

@@ -10,40 +10,32 @@ export default class Home extends Component {
       students: [],
       campuses: []
     };
-
-    this.func1 = this.func1.bind(this)
-    this.func2 = this.func2.bind(this)
+    // this.func1 = this.func1.bind(this)
   }
 
 	componentDidMount () {
-		axios.get('api/campuses')
+		axios.get('/api/campuses/')
 		.then(res => res.data)
-		.then(campuses => this.setState({campuses}))
+		.then(campuses => {
+      this.setState({campuses})
+      console.log(campuses)
+    })
 	}
 
-  func1() {
-    this.setState({
-      answered: false,
-    })
-  }
-
-  func2() {
-    this.setState({
-      answered: true
-    })
-  }
+  // func1() {
+  //   this.setState({
+  //     answered: false,
+  //   })
+  // }
 
   render() {
-    // if (!this.state) { return null }
-    // const {joke, answered} = this.state
    const campuses=(this.state.campuses)
     return (
-
       <div>
         <h1>hello world</h1>
         <div id="home-campuses">
           {campuses.map(campus => {
-            return <Link to = {'/campuses/:id'}>
+            return <Link to = {'/campus/'+ campus.id}>
               <img key={campus.id} src={campus.image}/>
             </Link>}
            )}
