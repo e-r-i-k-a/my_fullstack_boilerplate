@@ -2,6 +2,7 @@
 const api = require('express').Router()
 const db = require('../db/models')
 const Campus = db.Campus;
+const User = db.User;
 const bluebird = require('bluebird');
 
 // If you aren't getting to this object, but rather the index.html (something with a joke) your path is wrong.
@@ -27,12 +28,36 @@ api.get('/campuses', (req, res, next) => {
   .catch(next);
 })
 
+// api.get('/campuses/:id', (req, res, next) => {
+//   // db.Campus.findById(Number(req.params.id))
+//   // .then((campus) => {
+//   //   res.status(200).json(campus);
+//   // })
+//   db.User.findAll({
+//     include: [{
+//       model: Campus
+//     }],
+//     where: {
+//       campusId: (Number(req.params.id))
+//     }
+//   })
+//   .then((campusStudents) => {
+//     res.status(200).json(campusStudents);
+//   })
+//   .catch(next);
+// })
+
 api.get('/campuses/:id', (req, res, next) => {
-  db.Campus.findById(Number(req.params.id))
-  .then((campus) => {
-    res.status(200).json(campus);
-  })
-  .catch(next);
+	db.Campus.findOne({
+		include: [{model: User}],
+		where: {
+			id: Number(req.params.id)
+		}
+	})
+	.then(campus => {
+		res.json(campus)
+	})
+	.catch(next)
 })
 
 api.get('/students', (req, res, next) => {

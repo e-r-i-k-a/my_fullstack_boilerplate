@@ -39,6 +39,7 @@ export default class Students extends Component {
 							<th>#</th>
 							<th>Name</th>
 							<th>Campus</th>
+							<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,6 +50,9 @@ export default class Students extends Component {
 									<td>{student.id}</td>
 									<td>{student.name}</td>
 									<td>{student.campusId}</td>
+									<td>
+										<img src='/delete_img.png' onClick={() => console.log('clickityclick')}/>
+									</td>
 								</tr>
 							))
 						}

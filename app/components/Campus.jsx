@@ -5,7 +5,7 @@ export default class Campus extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-      campus: {},
+      students: {},
 		};
 	}
 
@@ -14,20 +14,37 @@ export default class Campus extends Component {
     .then(res => {
       return res.data
     })
-		.then(campus => {
-      this.setState({campus})
+		.then(students => {
+      return this.setState({students})
     })
 	}
 
 	render () {
-console.log('this.state,',this.state)
-    let campusId = this.props.match.params.id;
-
+    console.log('state:',this.state)
+    console.log('props:',this.props)
+    let campusName = this.state.students.name
+    let studentArr = this.state.students.users //an array of objects
+    console.log('studentarr',studentArr)
 		return (
       <div id="Campus">
-        <h1>Hello from {this.state.campus.name}</h1>
+        <h1>Hello from {campusName}</h1>
+        <table className = 'campus-student-table'>
+          <thead>
+					  <tr>
+						  <th>#</th>
+  						<th>Name</th>
+	  				</tr>
+		  		</thead>
+          <tbody>
+				  	{/* {this.state.students.users.map(studentObj =>
+						  	<tr key = {studentObj.id}>
+							  	<td>{studentObj.id}</td>
+								  <td>{studentObj.name}</td>
+                </tr>
+                )} */}
+          </tbody>
+        </table>
  			</div>
     )
-
 	}
 }

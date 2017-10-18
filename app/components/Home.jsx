@@ -18,7 +18,6 @@ export default class Home extends Component {
 		.then(res => res.data)
 		.then(campuses => {
       this.setState({campuses})
-      console.log(campuses)
     })
 	}
 
@@ -35,8 +34,8 @@ export default class Home extends Component {
         <h1>hello world</h1>
         <div id="home-campuses">
           {campuses.map(campus => {
-            return <Link to = {'/campus/'+ campus.id}>
-              <img key={campus.id} src={campus.image}/>
+            return <Link to = {'/campus/'+ campus.id} key={campus.id}>
+              <img src={campus.image}/>
             </Link>}
            )}
         </div>
