@@ -83,10 +83,11 @@ api.delete('/students/:id', (req, res, next) => {
 });
 
 api.post('/students', function (req, res, next) {
+  // console.log('body',req.body)
   db.User.create(req.body)
-  .then((newUser) => {
-    db.User.findAll()
-  })
+  // .then((newUser) => {
+  //   db.User.findAll()
+  // })
   .then ((students) => {
     res.status(201).json(students);
   })
