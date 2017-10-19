@@ -54,7 +54,7 @@ x  * see details about a campus on the **Single Campus** view, including that ca
   * can create a campus
   * can edit a campus's info, including adding/removing a student to/from that campus
   * can delete a campus
-  * can create a student
+x  * can create a student
   * can edit a student's info, including the campus that student is assigned to
 x  * can delete a student
 

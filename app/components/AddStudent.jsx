@@ -7,12 +7,14 @@ export default class AddStudent extends Component {
 		super(props);
 		this.state = {
 			campuses: [],
-			inputValue: '',
+			inputName: '',
+			inputEmail: '',
 			selectedCampus: '',
 			selectedCampusId: null
 		};
 		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleInput = this.handleInput.bind(this)
+		this.handleNameInput = this.handleNameInput.bind(this)
+		this.handleEmailInput = this.handleEmailInput.bind(this)
 		this.captureDropDown = this.captureDropDown.bind(this)
 	}
 
@@ -27,7 +29,8 @@ export default class AddStudent extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		axios.post('/api/students', {
-			name: this.state.inputValue,
+			name: this.state.inputName,
+			email: this.state.inputEmail,
 			campusId: Number(this.state.selectedCampusId)
 		})
 		// .then(res => res.data)
@@ -36,10 +39,17 @@ export default class AddStudent extends Component {
 		// })
 	}
 
-	handleInput(event) {
+	handleNameInput(event) {
 		event.preventDefault();
-		let inputValue = event.target.value
-		this.setState({inputValue})
+		let inputName = event.target.value
+		this.setState({inputName})
+	}
+
+
+	handleEmailInput(event) {
+		event.preventDefault();
+		let inputEmail = event.target.value
+		this.setState({inputEmail})
 	}
 
 	captureDropDown(event) {
@@ -66,8 +76,13 @@ export default class AddStudent extends Component {
             <div>
               <input
                 type="text"
-                onChange={this.handleInput}
-              />
+                onChange={this.handleNameInput}/>
+            </div>
+						<label>Email</label>
+            <div>
+              <input
+                type="text"
+                onChange={this.handleEmailInput}/>
             </div>
 						<select name="Select Campus" onChange={event=>this.captureDropDown(event)}>
 							<option value='' disabled selected>Select Campus</option>
