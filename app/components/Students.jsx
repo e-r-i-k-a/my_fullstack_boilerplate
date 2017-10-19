@@ -45,8 +45,6 @@ export default class Students extends Component {
 		// .then(this.fetchStudents())
 	}
 
-
-
 	render () {
 
 		const users = this.state.students;

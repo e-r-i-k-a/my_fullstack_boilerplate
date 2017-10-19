@@ -60,6 +60,14 @@ api.get('/campuses/:id', (req, res, next) => {
 	.catch(next)
 })
 
+api.delete('/campuses/:id', (req, res, next) => {
+  const id = Number(req.params.id);
+  db.Campus.destroy({
+     where: { id }
+    })
+    .catch(next);
+});
+
 api.get('/students', (req, res, next) => {
   db.User.findAll({include:[{model: Campus}]})
   .then((students) => {
@@ -73,21 +81,19 @@ api.delete('/students/:id', (req, res, next) => {
   db.User.destroy({
      where: { id }
     })
-    // .then(() => {
-    //   db.User.findAll({include:[{model: Campus}]})
-    // })
-    // .then((students) => {
-    //   res.status(204).json(students)
-    // })
     .catch(next);
 });
 
 api.post('/students', function (req, res, next) {
-  // console.log('body',req.body)
   db.User.create(req.body)
-  // .then((newUser) => {
-  //   db.User.findAll()
-  // })
+  .then ((students) => {
+    res.status(201).json(students);
+  })
+  .catch(next);
+})
+
+api.post('/campus', function (req, res, next) {
+  db.Campus.create(req.body)
   .then ((students) => {
     res.status(201).json(students);
   })

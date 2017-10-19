@@ -10,7 +10,7 @@ export default class Home extends Component {
       students: [],
       campuses: []
     };
-    // this.func1 = this.func1.bind(this)
+    this.deleteCampus = this.deleteCampus.bind(this);
   }
 
 	componentDidMount () {
@@ -21,11 +21,10 @@ export default class Home extends Component {
     })
 	}
 
-  // func1() {
-  //   this.setState({
-  //     answered: false,
-  //   })
-  // }
+  deleteCampus(event, id) {
+		event.preventDefault();
+		axios.delete('/api/campuses/'+id)
+	}
 
   render() {
    const campuses=(this.state.campuses)
@@ -35,9 +34,16 @@ export default class Home extends Component {
         <h1>hello world</h1>
         <div id="home-campuses">
           {campuses.map(campus => {
-            return <Link to = {'/campus/'+ campus.id} key={campus.id}>
-              <img src={campus.image}/>
-            </Link>}
+            return <span>
+              <Link to = {'/campus/'+ campus.id} key={campus.id}>
+                <img src={campus.image} width='200' height='200'/>
+              </Link>
+              <img
+                src='/delete_img.png'
+                onClick={(event) => this.deleteCampus(event, campus.id)}
+                key={campus.name}
+                className = 'delete-img'/>
+            </span>}
            )}
         </div>
       </div>
