@@ -8,6 +8,7 @@ import store from './store'
 import Home from './components/Home'
 import Students from './components/Students'
 import Campus from './components/Campus'
+import AddStudent from './components/AddStudent'
 
 render (
   <Provider store={store}>
@@ -20,6 +21,7 @@ render (
           <Route path="/home" component={Home}/>
           <Route path="/students" component={Students}/>
           <Route path="/campus/:id" component={Campus}/>
+          <Route path="/student/new" component={AddStudent}/>
           {/* <Route path="/students" render={() => <Student users={this.state.users} />}/> */}
             {/* //this is how you pass props down to a component */}
           {/* <Route path="/campuses" component={Campuses}/> */}

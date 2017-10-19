@@ -29,6 +29,7 @@ export default class Home extends Component {
 
   render() {
    const campuses=(this.state.campuses)
+   console.log(campuses)
     return (
       <div>
         <h1>hello world</h1>

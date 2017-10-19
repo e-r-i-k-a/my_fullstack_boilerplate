@@ -73,12 +73,12 @@ api.delete('/students/:id', (req, res, next) => {
   db.User.destroy({
      where: { id }
     })
-    .then(() => {
-      db.User.findAll()
-    })
-    .then((students) => {
-      res.status(204).json(students)
-    })
+    // .then(() => {
+    //   db.User.findAll({include:[{model: Campus}]})
+    // })
+    // .then((students) => {
+    //   res.status(204).json(students)
+    // })
     .catch(next);
 });
 

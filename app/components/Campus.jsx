@@ -5,7 +5,8 @@ export default class Campus extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-      students: {},
+      students: [],
+      campus: {}
 		};
 	}
 
@@ -14,16 +15,19 @@ export default class Campus extends Component {
     .then(res => {
       return res.data
     })
-		.then(students => {
-      return this.setState({students})
+		.then(campus => {
+      return this.setState({
+        campus: campus,
+        students: campus.users
+      })
     })
 	}
 
 	render () {
     console.log('state:',this.state)
     console.log('props:',this.props)
-    let campusName = this.state.students.name
-    let studentArr = this.state.students.users //an array of objects
+    let campusName = this.state.campus.name
+    let studentArr = this.state.students //an array of objects
     console.log('studentarr',studentArr)
 		return (
       <div id="Campus">
@@ -36,12 +40,13 @@ export default class Campus extends Component {
 	  				</tr>
 		  		</thead>
           <tbody>
-				  	{/* {this.state.students.users.map(studentObj =>
-						  	<tr key = {studentObj.id}>
-							  	<td>{studentObj.id}</td>
-								  <td>{studentObj.name}</td>
-                </tr>
-                )} */}
+            {console.log(studentArr)}
+				  	{studentArr.map(studentObj =>
+						  <tr key = {studentObj.id}>
+							  <td>{studentObj.id}</td>
+								<td>{studentObj.name}</td>
+              </tr>
+            )}
           </tbody>
         </table>
  			</div>
