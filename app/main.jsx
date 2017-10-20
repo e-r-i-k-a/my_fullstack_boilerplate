@@ -9,6 +9,7 @@ import Home from './components/Home'
 import Students from './components/Students'
 import Campus from './components/Campus'
 import AddStudent from './components/AddStudent'
+import Student from './components/Student'
 
 render (
   <Provider store={store}>
@@ -18,13 +19,11 @@ render (
           <NavBar />
         </div>
       <Switch>
-          <Route path="/home" component={Home}/>
-          <Route path="/students" component={Students}/>
-          <Route path="/campus/:id" component={Campus}/>
-          <Route path="/student/new" component={AddStudent}/>
-          {/* <Route path="/students" render={() => <Student users={this.state.users} />}/> */}
-            {/* //this is how you pass props down to a component */}
-          {/* <Route path="/campuses" component={Campuses}/> */}
+          <Route exact path="/home" component={Home}/>
+          <Route exact path="/students" component={Students}/>
+          <Route exact path="/campus/:id" component={Campus}/>
+          <Route exact path="/student/new" component={AddStudent}/>
+          <Route exact path='/students/:id' component={Student}/>
           <Redirect to="/home"/>
       </Switch>
       </div>

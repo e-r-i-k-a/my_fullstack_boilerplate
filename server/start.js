@@ -56,7 +56,7 @@ if (module === require.main) {
   const db = require('../db')
   db.sync()
   .then(() => {
-    console.log('db synced')
+    console.log('db is synced AF')
     app.listen(PORT, () => console.log(`server listening on port ${PORT}`))
   });
 }

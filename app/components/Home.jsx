@@ -24,7 +24,10 @@ export default class Home extends Component {
   deleteCampus(event, id) {
 		event.preventDefault();
 		axios.delete('/api/campuses/'+id)
-	}
+    .then(()=>axios.get('/api/campuses'))
+    .then(res => res.data)
+    .then(campuses => this.setState({campuses}))
+  }
 
   render() {
    const campuses=(this.state.campuses)
@@ -36,7 +39,7 @@ export default class Home extends Component {
           {campuses.map(campus => {
             return <span>
               <Link to = {'/campus/'+ campus.id} key={campus.id}>
-                <img src={campus.image} width='200' height='200'/>
+                <img src={campus.image} key={campus.image} width='200' height='200'/>
               </Link>
               <img
                 src='/delete_img.png'

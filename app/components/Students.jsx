@@ -10,16 +10,16 @@ export default class Students extends Component {
 			// singleStudent : null
 		};
 		this.deleteStudent = this.deleteStudent.bind(this);
-		this.fetchStudents = this.fetchStudents.bind(this);
+		// this.fetchStudents = this.fetchStudents.bind(this);
 		// this.showSingleStudent = this.showSingleStudent.bind(this)
 	}
 
-	fetchStudents() {
-		// preventDefault();
-		axios.get('/api/students')
-			.then(res => res.data)
-			.then(students => this.setState({students}))
-	}
+	// fetchStudents() {
+	// 	// preventDefault();
+	// 	axios.get('/api/students')
+	// 		.then(res => res.data)
+	// 		.then(students => this.setState({students}))
+	// }
 
 	componentDidMount () {
 		// e.preventDefault();
@@ -42,7 +42,6 @@ export default class Students extends Component {
 		.then(()=>axios.get('/api/students'))
 			.then(res => res.data)
 			.then(students => this.setState({students}))
-		// .then(this.fetchStudents())
 	}
 
 	render () {
@@ -73,7 +72,9 @@ export default class Students extends Component {
 										{student.id}
 									</td> */}
 									<td>{student.id}</td>
-									<td>{student.name}</td>
+									<td>
+										<a href={'/students/'+ student.id}>{student.name}</a>
+									</td>
 									<td>{student.campus.name}</td>
 									<td>
 										{/* <img src='/delete_img.png' onClick={() => console.log('clickityclick')}/> */}

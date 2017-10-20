@@ -24,9 +24,12 @@ export default class Campus extends Component {
     })
   }
 
-  deleteStudent(event, id) {
+	deleteStudent(event, id) {
 		event.preventDefault();
 		axios.delete('/api/students/'+id)
+		.then(()=>axios.get('/api/students'))
+			.then(res => res.data)
+			.then(students => this.setState({students}))
 	}
 
 	render () {

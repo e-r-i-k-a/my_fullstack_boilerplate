@@ -6,7 +6,7 @@ const Student = require('./db/models').User;
 db
   .sync({ force: true })
   .then(() => {
-    console.log('Seeding database');
+    console.log('planting seeds');
     return Campus.bulkCreate([
       {
         name: 'Luna',
@@ -27,7 +27,7 @@ db
     ]);
   })
   .then(() => {
-    console.log('Seeding database');
+    console.log('planting more seeds');
     return Student.bulkCreate([
       {
         name: 'erika',
@@ -57,7 +57,7 @@ db
     ]);
   })
   .then(() => {
-    console.log('Seeding successful');
+    console.log('flowers bloomed');
     db.close();
     return null;
   });

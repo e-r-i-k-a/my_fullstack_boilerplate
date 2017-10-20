@@ -60,6 +60,19 @@ api.get('/campuses/:id', (req, res, next) => {
 	.catch(next)
 })
 
+api.get('/students/:id', (req, res, next) => {
+	db.User.findOne({
+		include: [{model: Campus}],
+		where: {
+			id: Number(req.params.id)
+		}
+	})
+	.then(student => {
+		res.json(student)
+	})
+	.catch(next)
+})
+
 api.delete('/campuses/:id', (req, res, next) => {
   const id = Number(req.params.id);
   db.Campus.destroy({
