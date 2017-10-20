@@ -40,27 +40,6 @@ export default class Student extends Component {
                 <th>Delete</th>
               </tr>
             </thead>
-
-
-            <tbody>
-
-            {
-                // {this.state.student.map(student => (
-                // 	<tr key = {student.id}>
-                // 		<td>{student.id}</td>
-                // 		<td>{student.name}</td>
-                // 		{/* <td>{student.campus.name}</td> */}
-                // 		<td>
-                // 			<img src='/delete_img.png' onClick={(event) => this.deleteStudent(event, student.id)}/>
-                // 		</td>
-                // 	</tr>
-                // ))
-              }
-
-
-            </tbody>
-
-
             <tbody>
                 <tr>
                   <td>{this.state.student.id}</td>
@@ -71,15 +50,11 @@ export default class Student extends Component {
                   </td>
                 </tr>
             </tbody>
-
-
-
           </table>
          </div>
       )
     } else {
       return <h1>Hello from Student</h1>
     }
-
 	}
 }

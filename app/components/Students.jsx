@@ -7,11 +7,8 @@ export default class Students extends Component {
 		super(props);
 		this.state = {
 			students: [],
-			// singleStudent : null
 		};
 		this.deleteStudent = this.deleteStudent.bind(this);
-		// this.fetchStudents = this.fetchStudents.bind(this);
-		// this.showSingleStudent = this.showSingleStudent.bind(this)
 	}
 
 	// fetchStudents() {
@@ -22,19 +19,11 @@ export default class Students extends Component {
 	// }
 
 	componentDidMount () {
-		// e.preventDefault();
 		axios.get('/api/students')
 		.then(res => res.data)
 		.then(students => this.setState({students}))
 		// this.fetchStudents();
 	}
-
-	// showSingleStudent(id){
-	// 	axios.get(`students\${id}`)
-	// 	.then(student => {
-	// 		this.setState({singleStudent: student})
-	// 	})
-	// }
 
 	deleteStudent(event, id) {
 		event.preventDefault();
@@ -68,16 +57,12 @@ export default class Students extends Component {
 						{
 							users.map(student => (
 								<tr key = {student.id}>
-									{/* <td onClick={() => this.showSingleStudent(student.id)}>
-										{student.id}
-									</td> */}
 									<td>{student.id}</td>
 									<td>
 										<a href={'/students/'+ student.id}>{student.name}</a>
 									</td>
 									<td>{student.campus.name}</td>
 									<td>
-										{/* <img src='/delete_img.png' onClick={() => console.log('clickityclick')}/> */}
 										<img src='/delete_img.png' onClick={(event) => this.deleteStudent(event, student.id)}/>
 									</td>
 								</tr>

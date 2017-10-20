@@ -27,9 +27,13 @@ export default class Campus extends Component {
 	deleteStudent(event, id) {
 		event.preventDefault();
 		axios.delete('/api/students/'+id)
-		.then(()=>axios.get('/api/students'))
+		.then(()=>axios.get('/api/campuses/'+this.props.match.params.id))
 			.then(res => res.data)
-			.then(students => this.setState({students}))
+			.then(campus => {
+        return this.setState({
+          campus: campus,
+        students: campus.users})
+    })
 	}
 
 	render () {
@@ -53,7 +57,10 @@ export default class Campus extends Component {
 				  	{studentArr.map(studentObj =>
 						  <tr key = {studentObj.id}>
 							  <td>{studentObj.id}</td>
-								<td>{studentObj.name}</td>
+                <td>
+                  <a href={'/students/'+studentObj.id}>{studentObj.name}
+                  </a>
+                </td>
                 <td>
 									<img src='/delete_img.png' onClick={(event) => this.deleteStudent(event, studentObj.id)}/>
 								</td>
