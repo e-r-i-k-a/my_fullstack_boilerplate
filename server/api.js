@@ -11,7 +11,7 @@ const bluebird = require('bluebird');
 
 // api.get('/', (req, res, next) => res.send({hello: 'world'}))
 
-
+//GET:
 api.get('/', (req, res, next) => {
   db.User.findAll({include: [{all: true}]})
   .then(allData => {
@@ -41,6 +41,14 @@ api.get('/campuses/:id', (req, res, next) => {
 	.catch(next)
 })
 
+api.get('/students', (req, res, next) => {
+  db.User.findAll({include:[{model: Campus}]})
+  .then((students) => {
+    res.status(200).json(students);
+  })
+  .catch(next);
+})
+
 api.get('/students/:id', (req, res, next) => {
 	db.User.findOne({
 		include: [{model: Campus}],
@@ -54,6 +62,7 @@ api.get('/students/:id', (req, res, next) => {
 	.catch(next)
 })
 
+//DELETE:
 api.delete('/campuses/:id', (req, res, next) => {
   const id = Number(req.params.id);
   db.User.destroy({
@@ -61,18 +70,10 @@ api.delete('/campuses/:id', (req, res, next) => {
   })
   .then(()=>db.Campus.destroy({
     where: {id}
-  })
-).then(()=>res.sendStatus(202))
-.catch(next)
+  }))
+  .then(()=>res.sendStatus(202))
+  .catch(next)
 });
-
-api.get('/students', (req, res, next) => {
-  db.User.findAll({include:[{model: Campus}]})
-  .then((students) => {
-    res.status(200).json(students);
-  })
-  .catch(next);
-})
 
 api.delete('/students/:id', (req, res, next) => {
   const id = Number(req.params.id);
@@ -83,6 +84,7 @@ api.delete('/students/:id', (req, res, next) => {
     .catch(next);
 });
 
+//POST:
 api.post('/students', function (req, res, next) {
   db.User.create(req.body)
   .then ((students) => {

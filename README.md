@@ -53,7 +53,7 @@ x  * see details about a campus on the **Single Campus** view, including that ca
 - Actions: as a user I...
 x  * can create a campus
 x  * can edit a campus's info, including adding/removing a student to/from that campus
-  * can delete a campus
+x  * can delete a campus
 x  * can create a student
   * can edit a student's info, including the campus that student is assigned to
 x  * can delete a student
@@ -62,16 +62,16 @@ x  * can delete a student
 
 ```
 GET
-- all campuses
-- a campus by id
-- all students
-- a student by id
+x- all campuses
+x- a campus by id
+x- all students
+x- a student by id
 ```
 
 ```
 POST
-- new campus
-- new student
+x- new campus
+x- new student
 ```
 
 ```
@@ -82,8 +82,8 @@ PUT
 
 ```
 DELETE
-- a campus
-- a student
+x- a campus
+x- a student
 ```
 
 ### How to test functionality without a frontend

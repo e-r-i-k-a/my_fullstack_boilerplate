@@ -13,9 +13,7 @@ export default class Campus extends Component {
 
 	componentDidMount () {
 		axios.get('/api/campuses/'+ this.props.match.params.id)
-    .then(res => {
-      return res.data
-    })
+    .then(res => res.data)
 		.then(campus => {
       return this.setState({
         campus: campus,

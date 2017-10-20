@@ -5,7 +5,8 @@ export default class Student extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-      student: {}
+      student: {},
+      campus: {}
     }
   this.deleteStudent = this.deleteStudent.bind(this);
 	}
@@ -13,10 +14,12 @@ export default class Student extends Component {
 	componentDidMount () {
 		axios.get('/api/students/'+ this.props.match.params.id)
 		.then(res => res.data)
-		.then(student => this.setState({student}))
-  }
+		.then(student => this.setState({
+      student: student,
+      campus: student.campus})
+    )}
 
-	deleteStudent(event, id) {
+    deleteStudent(event, id) {
 		event.preventDefault();
 		axios.delete('/api/students/'+id)
     // .then(()=> 'Student deleted.')
@@ -36,7 +39,7 @@ export default class Student extends Component {
               <tr>
                 <th>#</th>
                 <th>Name</th>
-                {/* <th>Campus</th> */}
+                <th>Campus</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -44,7 +47,7 @@ export default class Student extends Component {
                 <tr>
                   <td>{this.state.student.id}</td>
                   <td>{this.state.student.name}</td>
-                  {/* {<td>{this.state.student.campus.name}</td>} */}
+                  {<td>{this.state.campus.name}</td>}
                   <td>
                     <img src='/delete_img.png' onClick={(event) => this.deleteStudent(event, this.state.student.id)}/>
                   </td>
