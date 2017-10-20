@@ -40,19 +40,19 @@ export default class EditStudent extends Component {
 
 	handleStudentSubmit(event) {
     event.preventDefault();
-    if (!this.state.inputName.length) {
-      this.setState({
-        inputName: this.state.student.name
-      })
-    }
-    if (!this.state.inputEmail.length) {
-      this.setState({
-        inputEmail: this.state.student.email
-      })
-    }
+    // if (!this.state.inputName) {
+    //   this.setState({
+    //     inputName: this.state.student.name
+    //   })
+    // }
+    // if (!this.state.inputEmail) {
+    //   this.setState({
+    //     inputEmail: this.state.student.email
+    //   })
+    // }
 		axios.put('/api/students/' + this.props.match.params.id +'/edit', {
-      name: this.state.inputName,
-      email: this.state.inputEmail
+      inputName: this.state.inputName,
+      inputEmail: this.state.inputEmail
 			// email: this.state.inputEmail,
 			// campusId: Number(this.state.selectedCampusId)
     })
