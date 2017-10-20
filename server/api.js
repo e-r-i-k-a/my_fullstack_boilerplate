@@ -65,6 +65,7 @@ api.delete('/campuses/:id', (req, res, next) => {
   db.Campus.destroy({
      where: { id }
     })
+    .then(()=>res.sendStatus(202))
     .catch(next);
 });
 
@@ -81,6 +82,7 @@ api.delete('/students/:id', (req, res, next) => {
   db.User.destroy({
      where: { id }
     })
+    .then(()=>res.sendStatus(202))
     .catch(next);
 });
 
