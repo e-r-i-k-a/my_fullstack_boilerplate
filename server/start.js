@@ -22,19 +22,6 @@ module.exports = app
   .use('/api', require('./api')) // Serve our api
   .get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html'))) // Send index.html for any other requests.
 
-
-
-
-
-// app.use(4 params)
-  // * all .next in routes will come back here
-  // put error handling middleware here!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // *
-
-
-
-
-
   // notice the use of `_` as the first parameter above. This is a pattern for parameters that must exist, but you don't use or reference (or need) in the function body that follows.
 
 if (module === require.main) {

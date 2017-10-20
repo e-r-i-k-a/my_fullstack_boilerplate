@@ -11,13 +11,6 @@ export default class Students extends Component {
 		this.deleteStudent = this.deleteStudent.bind(this);
 	}
 
-	// fetchStudents() {
-	// 	// preventDefault();
-	// 	axios.get('/api/students')
-	// 		.then(res => res.data)
-	// 		.then(students => this.setState({students}))
-	// }
-
 	componentDidMount () {
 		axios.get('/api/students')
 		.then(res => res.data)
@@ -39,7 +32,6 @@ export default class Students extends Component {
 		return (
 			<div id="Students">
 				<h1>Hello from Students</h1>
-				{/* {this.singleStudent ? <Student student={this.singleStudent} : */}
 				<Link to = {'/student/new'}>
 					{<img src='/add_student_button.png'/>}
 				</Link>
@@ -54,8 +46,7 @@ export default class Students extends Component {
 						</tr>
 					</thead>
 					<tbody>
-						{
-							users.map(student => (
+						{users.map(student => (
 								<tr key = {student.id}>
 									<td>{student.id}</td>
 									<td>

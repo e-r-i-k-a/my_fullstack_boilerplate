@@ -55,7 +55,7 @@ x  * can create a campus
 x  * can edit a campus's info, including adding/removing a student to/from that campus
 x  * can delete a campus
 x  * can create a student
-  * can edit a student's info, including the campus that student is assigned to
+x  * can edit a student's info, including the campus that student is assigned to
 x  * can delete a student
 
 ### Routes
@@ -76,7 +76,7 @@ x- new student
 
 ```
 PUT
-- updated student info for one student
+x- updated student info for one student
 - updated campus info for one campus
 ```
 

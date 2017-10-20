@@ -1,6 +1,4 @@
 .delete-img {
-  position: absolute; /*moved in relation to #input-parent*/
-  top: 110px;
-  left: 110px;
-  z-index: 1
+  position: relative;
+  left: -24px;
 }

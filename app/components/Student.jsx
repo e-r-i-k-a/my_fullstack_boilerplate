@@ -23,14 +23,10 @@ export default class Student extends Component {
     deleteStudent(event, id) {
 		event.preventDefault();
 		axios.delete('/api/students/'+id)
-    // .then(()=> 'Student deleted.')
     .then(()=>this.setState({student: undefined}))
   }
 
 	render () {
-    console.log('state:',this.state)
-    console.log('props:',this.props)
-    console.log('this.state.student', this.state.student)
     if (this.state.student) {
       return (
         <div id="Student">

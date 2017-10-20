@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 export default class EditStudent extends Component {
@@ -10,21 +9,14 @@ export default class EditStudent extends Component {
       campus: {},
       student: {},
       inputName: '',
-      // inputNameDirty: false,
       inputEmail: '',
-      // inputEmailDirty: false,
 			selectedCampus: '',
 			selectedCampusId: null,
-			// inputCampus: '',
-			// inputImage: '/favicon.ico'
 		};
 		this.handleStudentSubmit = this.handleStudentSubmit.bind(this)
 		this.handleNameInput = this.handleNameInput.bind(this)
 		this.handleEmailInput = this.handleEmailInput.bind(this)
-		// this.handleCampusInput = this.handleCampusInput.bind(this)
-		// this.handleImageInput = this.handleImageInput.bind(this)
 		this.captureDropDown = this.captureDropDown.bind(this)
-		// this.handleCampusSubmit = this.handleCampusSubmit.bind(this)
 	}
 
 	componentDidMount () {
@@ -62,12 +54,6 @@ export default class EditStudent extends Component {
     })
 	}
 
-	// handleImageInput(event) {
-	// 	event.preventDefault();
-	// 	let inputImage = event.target.value
-	// 	this.setState({inputImage})
-	// }
-
 	captureDropDown(event) {
 		event.preventDefault();
 		let selectedDropDown = (event.target.value)
@@ -79,10 +65,6 @@ export default class EditStudent extends Component {
 	}
 
 	render () {
-		console.log('props!',this.props)
-		console.log('state!',this.state)
-		// console.log('this.state.student.name', this.state.student.name)
-
 		return (
 		<div id = "EditStudent">
 			<div id="EditStudentInfo">
@@ -112,11 +94,6 @@ export default class EditStudent extends Component {
 								 return <option key={campus.id}>{campus.name}</option>}})}
 						</select>
           </div>
-          {/* <div>
-						<input
-							type="text"
-							onChange={this.handleImageInput}/>
-					</div> */}
           <div>
             <button type="submit">
               Submit

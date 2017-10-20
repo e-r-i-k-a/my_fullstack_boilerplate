@@ -34,9 +34,6 @@ let Campus = db.define('campus', {
 // associations:
 User.belongsTo(Campus);
 		//CampusId added to User table
-		//User.prototype.setCampus
 Campus.hasMany(User);
-	//we can set campus now with user
-	//campus.prototype.getUser() (on the lowercase instance, not the uppercase class)
 
 module.exports = {User, Campus}

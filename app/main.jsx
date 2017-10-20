@@ -33,10 +33,3 @@ render (
   </Provider>,
   document.getElementById('main')
 )
-
-// render (
-//   <Provider store={store}>
-//     <Root/>
-//   </Provider>,
-//   document.getElementById('main')
-// )
