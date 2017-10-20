@@ -94,7 +94,8 @@ api.put('/students/:id/edit', (req, res, next) => {
 	.then(studentToUpdate => {
     studentToUpdate.update({
       name: req.body.inputName,
-      email: req.body.inputEmail
+      email: req.body.inputEmail,
+      campusId: req.body.selectedCampusId
     })
   })
   .then((updatedStudent) => {

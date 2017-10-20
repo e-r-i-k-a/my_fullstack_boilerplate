@@ -14,7 +14,7 @@ export default class EditStudent extends Component {
       inputEmail: '',
       // inputEmailDirty: false,
 			selectedCampus: '',
-			// selectedCampusId: null,
+			selectedCampusId: null,
 			// inputCampus: '',
 			// inputImage: '/favicon.ico'
 		};
@@ -39,64 +39,26 @@ export default class EditStudent extends Component {
 
 	handleStudentSubmit(event) {
     event.preventDefault();
-    if (this.state.inputName && this.state.inputEmail) {
 			axios.put('/api/students/' + this.props.match.params.id +'/edit', {
-				inputName: this.state.inputName,
-				inputEmail: this.state.inputEmail
-		})}}
-		// .then(() => {})
-	// } else if (this.s)
-
-	// 	.then(this.setState({
-	// 		inputName: this.state.student.name,
-	// 		inputEmail: this.state.student.email
-	// 	})
-	// )
-
-		// .then(()=>{})
-    // if (!this.state.inputEmail) {
-    //   this.setState({
-    //     inputEmail: this.state.student.email
-    //   })
-    // }
-		// axios.put('/api/students/' + this.props.match.params.id +'/edit', {
-    //   inputName: this.state.inputName,
-    //   inputEmail: this.state.inputEmail
-		// 	// email: this.state.inputEmail,
-		// 	// campusId: Number(this.state.selectedCampusId)
-    // })
-    // .then(()=>{})
-	// }
-
-	// handleCampusSubmit(event) {
-	// 	event.preventDefault();
-	// 	axios.post('/api/campus', {
-	// 		name: this.state.inputCampus,
-	// 		image: this.state.inputImage,
-	// 	})
-	// }
+				inputName: this.state.inputName || this.state.student.name,
+				inputEmail: this.state.inputEmail || this.state.student.email,
+				selectedCampusId: this.state.selectedCampusId || this.state.campus.id
+			})
+		}
 
 	handleNameInput(event) {
 		event.preventDefault();
 		let inputName = event.target.value
 		this.setState({
       inputName: inputName,
-      // inputNameDirty: true
     })
 	}
-
-	// handleCampusInput(event) {
-	// 	event.preventDefault();
-	// 	let inputCampus = event.target.value
-	// 	this.setState({inputCampus})
-	// }
 
 	handleEmailInput(event) {
 		event.preventDefault();
 		let inputEmail = event.target.value
 		this.setState({
       inputEmail: inputEmail,
-      // inputEmailDirty: true
     })
 	}
 
@@ -112,7 +74,6 @@ export default class EditStudent extends Component {
 		let selectedCampusId = this.state.campuses.filter(function(campus){
 			return campus.name === selectedDropDown
     })[0].id
-    // let selectedCampusId = this.state.campuses.selectedDropDown.id
 		this.setState({selectedCampus: selectedDropDown})
 		this.setState({selectedCampusId})
 	}
