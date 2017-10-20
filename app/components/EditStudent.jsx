@@ -32,32 +32,41 @@ export default class EditStudent extends Component {
 		.then(res => res.data)
 		.then(student => this.setState({
       student: student,
-      campus: student.campus})
-    // .then(axios.get('/api/campuses'))
-    // .then(res => res.data)
-    // .then(campuses => this.setState({campuses}))
-    )}
+      campus: student.campus}))
+    .then(()=>axios.get('/api/campuses'))
+    .then((res) => res.data)
+    .then((campuses) => this.setState({campuses}))}
 
 	handleStudentSubmit(event) {
     event.preventDefault();
-    // if (!this.state.inputName) {
-    //   this.setState({
-    //     inputName: this.state.student.name
-    //   })
-    // }
+    if (this.state.inputName && this.state.inputEmail) {
+			axios.put('/api/students/' + this.props.match.params.id +'/edit', {
+				inputName: this.state.inputName,
+				inputEmail: this.state.inputEmail
+		})}}
+		// .then(() => {})
+	// } else if (this.s)
+
+	// 	.then(this.setState({
+	// 		inputName: this.state.student.name,
+	// 		inputEmail: this.state.student.email
+	// 	})
+	// )
+
+		// .then(()=>{})
     // if (!this.state.inputEmail) {
     //   this.setState({
     //     inputEmail: this.state.student.email
     //   })
     // }
-		axios.put('/api/students/' + this.props.match.params.id +'/edit', {
-      inputName: this.state.inputName,
-      inputEmail: this.state.inputEmail
-			// email: this.state.inputEmail,
-			// campusId: Number(this.state.selectedCampusId)
-    })
-    .then(()=>{})
-	}
+		// axios.put('/api/students/' + this.props.match.params.id +'/edit', {
+    //   inputName: this.state.inputName,
+    //   inputEmail: this.state.inputEmail
+		// 	// email: this.state.inputEmail,
+		// 	// campusId: Number(this.state.selectedCampusId)
+    // })
+    // .then(()=>{})
+	// }
 
 	// handleCampusSubmit(event) {
 	// 	event.preventDefault();
@@ -100,10 +109,10 @@ export default class EditStudent extends Component {
 	captureDropDown(event) {
 		event.preventDefault();
 		let selectedDropDown = (event.target.value)
-		// let selectedCampusId = this.state.campuses.filter(function(campus){
-		// 	return campus.name === selectedDropDown
-    // })[0].id
-    let selectedCampusId = this.state.student.campus.id
+		let selectedCampusId = this.state.campuses.filter(function(campus){
+			return campus.name === selectedDropDown
+    })[0].id
+    // let selectedCampusId = this.state.campuses.selectedDropDown.id
 		this.setState({selectedCampus: selectedDropDown})
 		this.setState({selectedCampusId})
 	}
@@ -111,6 +120,7 @@ export default class EditStudent extends Component {
 	render () {
 		console.log('props!',this.props)
 		console.log('state!',this.state)
+		// console.log('this.state.student.name', this.state.student.name)
 
 		return (
 		<div id = "EditStudent">
@@ -133,9 +143,12 @@ export default class EditStudent extends Component {
                 placeholder={this.state.student.email}
                 onChange={this.handleEmailInput}/>
             </div>
-						<select name="Select Campus" onChange={event=>this.captureDropDown(event)}>
-							<option value=''>{this.state.campus.name}</option>
-							 {this.state.campuses.map(campus => {return <option key={campus.id}>{campus.name}</option>})}
+						<select name="Change Campus" onChange={event=>this.captureDropDown(event)}>
+							 {this.state.campuses.map(campus => {
+							 if(campus.name === this.state.campus.name){
+								 return <option selected key={campus.id}>{campus.name}</option>
+							 } else {
+								 return <option key={campus.id}>{campus.name}</option>}})}
 						</select>
           </div>
           {/* <div>
