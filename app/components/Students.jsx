@@ -22,7 +22,6 @@ export default class Students extends Component {
 		axios.get('/api/students')
 		.then(res => res.data)
 		.then(students => this.setState({students}))
-		// this.fetchStudents();
 	}
 
 	deleteStudent(event, id) {
@@ -49,6 +48,7 @@ export default class Students extends Component {
 						<tr>
 							<th>#</th>
 							<th>Name</th>
+							<th>Email</th>
 							<th>Campus</th>
 							<th>Delete</th>
 						</tr>
@@ -61,6 +61,7 @@ export default class Students extends Component {
 									<td>
 										<a href={'/students/'+ student.id}>{student.name}</a>
 									</td>
+									<td>{student.email}</td>
 									<td>{student.campus.name}</td>
 									<td>
 										<img src='/delete_img.png' onClick={(event) => this.deleteStudent(event, student.id)}/>

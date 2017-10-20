@@ -10,6 +10,7 @@ import Students from './components/Students'
 import Campus from './components/Campus'
 import AddStudent from './components/AddStudent'
 import Student from './components/Student'
+import EditStudent from './components/EditStudent'
 
 render (
   <Provider store={store}>
@@ -24,6 +25,7 @@ render (
           <Route exact path="/campus/:id" component={Campus}/>
           <Route exact path="/student/new" component={AddStudent}/>
           <Route exact path='/students/:id' component={Student}/>
+          <Route exact path='/students/:id/edit' component={EditStudent}/>
           <Redirect to="/home"/>
       </Switch>
       </div>
