@@ -37,6 +37,7 @@ export default class AddStudent extends Component {
 			email: this.state.inputEmail,
 			campusId: Number(this.state.selectedCampusId)
 		})
+		.then(()=>{})
 	}
 
 	handleCampusSubmit(event) {

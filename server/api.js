@@ -84,6 +84,25 @@ api.delete('/students/:id', (req, res, next) => {
     .catch(next);
 });
 
+//PUT
+api.put('/students/:id/edit', (req, res, next) => {
+  const id = Number(req.params.id);
+  db.User.findOne({
+		include: [{model: Campus}],
+		where: {id}
+	})
+	.then(studentToUpdate => {
+    studentToUpdate.update({
+      name: req.body.inputName,
+      email: req.body.inputEmail
+    })
+  })
+  .then((updatedStudent) => {
+    res.status(200).json(updatedStudent)
+  })
+  .catch(next);
+})
+
 //POST:
 api.post('/students', function (req, res, next) {
   db.User.create(req.body)
