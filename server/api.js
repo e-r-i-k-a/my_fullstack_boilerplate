@@ -28,25 +28,6 @@ api.get('/campuses', (req, res, next) => {
   .catch(next);
 })
 
-// api.get('/campuses/:id', (req, res, next) => {
-//   // db.Campus.findById(Number(req.params.id))
-//   // .then((campus) => {
-//   //   res.status(200).json(campus);
-//   // })
-//   db.User.findAll({
-//     include: [{
-//       model: Campus
-//     }],
-//     where: {
-//       campusId: (Number(req.params.id))
-//     }
-//   })
-//   .then((campusStudents) => {
-//     res.status(200).json(campusStudents);
-//   })
-//   .catch(next);
-// })
-
 api.get('/campuses/:id', (req, res, next) => {
 	db.Campus.findOne({
 		include: [{model: User}],
@@ -75,11 +56,14 @@ api.get('/students/:id', (req, res, next) => {
 
 api.delete('/campuses/:id', (req, res, next) => {
   const id = Number(req.params.id);
-  db.Campus.destroy({
-     where: { id }
-    })
-    .then(()=>res.sendStatus(202))
-    .catch(next);
+  db.User.destroy({
+    where: {campusId: id}
+  })
+  .then(()=>db.Campus.destroy({
+    where: {id}
+  })
+).then(()=>res.sendStatus(202))
+.catch(next)
 });
 
 api.get('/students', (req, res, next) => {

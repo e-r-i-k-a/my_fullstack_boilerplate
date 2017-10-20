@@ -40,8 +40,8 @@ x  * will land on **Home** by default
 x  * can navigate to **Campuses** from **Home**
 x  * can navigate to **Students** from **Home**
 x  * can navigate to view a **Single Campus** from **Campuses**
-  * can navigate to view a **Single Student** from **Students**
-  * can navigate to view a **Single Student** from **Single Campus** (for any student at that campus)
+x  * can navigate to view a **Single Student** from **Students**
+x  * can navigate to view a **Single Student** from **Single Campus** (for any student at that campus)
   * can navigate to view that student's **Single Campus** from **Single Student**
 
 - Views: as a user I...
