@@ -1,0 +1,32 @@
+//to watch and compile, run: 'stylus -w public/stylus/stylesheet.styl -o public/stylesheet.css'
+
+// devices
+phone = 'only screen and (max-width: 480px)'
+tablet = 'only screen and (min-width: 481px) and (max-width: 800px)'
+desktop = 'only screen and (min-width: 801px)'
+tablet_and_desktop = 'only screen and (min-width: 481px)'
+
+// colors
+primary = #475CD1
+secondary = complement(primary)
+tertiary = tint(secondary, 50%)
+
+//functions
+border-radius(val=10px)
+  -webkit-border-radius val
+  -moz-border-radius val
+  border-radius val
+
+center()
+  display flex
+  align-items center
+  justify-content center
+  text-align center
+
+// built in functions:
+//   color
+//     grayscale/invert/complement(color)
+//     rgba/tint/shade/desaturate(color, percent)
+//   size (val)
+//     abs, ceil, floor
+//     unit(val, 'px') //changes 10% to 10px

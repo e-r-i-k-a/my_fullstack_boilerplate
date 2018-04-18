@@ -1,54 +1,41 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar';
-import axios from 'axios';
-import {Link} from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+// import axios from 'axios';
+import Slider from './Slider'
 
 export default class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      students: [],
-      campuses: []
+      id: ''
     };
-    this.deleteCampus = this.deleteCampus.bind(this);
+    this.doSomething = this.doSomething.bind(this);
   }
 
-	componentDidMount () {
-		axios.get('/api/campuses/')
-		.then(res => res.data)
-		.then(campuses => {
-      this.setState({campuses})
-    })
-	}
+  componentDidMount() {
+    // axios.get('API')
+    // .then(res => res.data)
+    // .then((stuff => {
+    //   this.setState({stuff})
+    // })
+    // or
+    // window.fetch('API')
+    //   .then(res => res.json())
+    //   .then((items) => {
+    //     return this.setState({})
+    //   })
+  }
 
-  deleteCampus(event, id) {
-		event.preventDefault();
-		axios.delete('/api/campuses/'+id)
-    .then(()=>axios.get('/api/campuses'))
-    .then(res => res.data)
-    .then(campuses => this.setState({campuses}))
+  doSomething(e, id) {
+    e.preventDefault();
   }
 
   render() {
-   const campuses=(this.state.campuses)
-   console.log(campuses)
+    console.log('state', this.state)
     return (
       <div>
-        <h1>hello world</h1>
-        <div id="home-campuses">
-          {campuses.map(campus => {
-            return <span>
-              <Link to = {'/campus/'+ campus.id} key={campus.id}>
-                <img src={campus.image} key={campus.image} width='200' height='200'/>
-              </Link>
-              <img
-                src='/delete_img.png'
-                onClick={(event) => this.deleteCampus(event, campus.id)}
-                key={campus.name}
-                className = 'delete-img'/>
-            </span>}
-           )}
-        </div>
+        <h1>Hello from Home Component</h1>
+        <Slider />
       </div>
     )
   }

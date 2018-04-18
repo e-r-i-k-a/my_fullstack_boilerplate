@@ -1,8 +1,6 @@
 {
-  "name": "erikas_senior_enrichment",
+  "name": "my_boilerplate",
   "version": "0.0.1",
-  "description": "A review time project",
-  "main": "index.js",
   "scripts": {
     "test": "mocha **/*.test.js *.test.js",
     "seed": "node seed",
@@ -10,11 +8,6 @@
     "build-watch": "webpack -w",
     "start": "webpack -w & nodemon server/start.js"
   },
-  "keywords": [
-    "react",
-    "redux",
-    "skeleton"
-  ],
   "dependencies": {
     "axios": "^0.16.2",
     "body-parser": "^1.15.2",
@@ -38,6 +31,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "volleyball": "^1.4.1",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.5",
+    "webpack-cli": "^2.0.14"
   }
 }

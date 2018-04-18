@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const Sequelize = require('sequelize');
 const pkg = require('../package.json');
 
-const name = process.env.erikas_senior_enrichment || pkg.name;
+const name = process.env.my_boilerplate || pkg.name;
 const connectionString = process.env.DATABASE_connectionString || `postgres://localhost:5432/${name}`;
 
 console.log(chalk.yellow(`Opening database connection to ${connectionString}`));

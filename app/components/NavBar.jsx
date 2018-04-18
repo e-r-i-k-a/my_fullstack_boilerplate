@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
-import Home from './Home';
-import Students from './Students';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const onClickStudents = () => {}
+export default class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
 
-const NavBar = (props) => {
-  return (
-		<div id="NavBar">
-      <Link to = {'/home'}>
-        <button id="Home-btn">Home</button>
-      </Link>
-      <Link to = {'/students'}>
-        <button id="Students-btn">Students</button>
-      </Link>
-      <hr/>
-    </div>
-	)
+  render() {
+    return (
+      <div>
+        <nav>
+          <Link to={'/home'}>
+            <button>Home</button>
+          </Link>
+          <Link to={'/articles'}>
+            <button>Articles</button>
+          </Link>
+        </nav>
+      </div>
+    )
+  }
 }
-
-export default NavBar
